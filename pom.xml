@@ -8,6 +8,7 @@
     <artifactId>chat-users</artifactId>
     <packaging>pom</packaging>
     <version>1.0.0</version>
+
     <modules>
         <module>users-service</module>
         <module>users-service-standalone</module>
