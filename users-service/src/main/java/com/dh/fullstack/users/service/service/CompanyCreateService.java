@@ -1,5 +1,6 @@
 package com.dh.fullstack.users.service.service;
 
+import com.dh.fullstack.users.service.framework.context.ServiceTransactional;
 import com.dh.fullstack.users.service.input.CompanyCreateInput;
 import com.dh.fullstack.users.service.model.domain.Account;
 import com.dh.fullstack.users.service.model.domain.Company;
@@ -12,9 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * @author Santiago Mamani
  */
-@Service
-@Scope("prototype")
-@Transactional
+@ServiceTransactional
 public class CompanyCreateService {
 
     private CompanyCreateInput input;
