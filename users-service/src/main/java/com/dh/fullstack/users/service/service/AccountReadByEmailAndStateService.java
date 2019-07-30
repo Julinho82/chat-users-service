@@ -1,17 +1,15 @@
 package com.dh.fullstack.users.service.service;
 
+import com.dh.fullstack.users.service.framework.context.ServiceTransactional;
 import com.dh.fullstack.users.service.model.domain.Account;
 import com.dh.fullstack.users.service.model.domain.AccountState;
 import com.dh.fullstack.users.service.model.repositories.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Service;
 
 /**
  * @author Santiago Mamani
  */
-@Scope("prototype")
-@Service
+@ServiceTransactional
 public class AccountReadByEmailAndStateService {
 
     private String email;

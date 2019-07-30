@@ -7,11 +7,13 @@ import org.springframework.transaction.annotation.Transactional;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
+/**
+ * @author Santiago Mamani
+ */
 @Service
 @Scope("prototype")
 @Transactional
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ServiceTransactional {
-
 
 }

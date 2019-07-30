@@ -6,9 +6,6 @@ import com.dh.fullstack.users.service.model.domain.Account;
 import com.dh.fullstack.users.service.model.domain.Company;
 import com.dh.fullstack.users.service.model.repositories.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author Santiago Mamani

@@ -1,5 +1,8 @@
 package com.dh.fullstack.users.service.service;
 
+import com.dh.chat.contact.service.input.ContactCreateInput;
+import com.dh.fullstack.users.service.client.contact.service.SystemContactService;
+import com.dh.fullstack.users.service.framework.context.ServiceTransactional;
 import com.dh.fullstack.users.service.input.EmployeeCreateInput;
 import com.dh.fullstack.users.service.model.domain.Account;
 import com.dh.fullstack.users.service.model.domain.AccountState;
@@ -7,19 +10,19 @@ import com.dh.fullstack.users.service.model.domain.Employee;
 import com.dh.fullstack.users.service.model.repositories.AccountRepository;
 import com.dh.fullstack.users.service.model.repositories.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
 /**
  * @author Santiago Mamani
  */
-@Scope("prototype")
-@Service
+@ServiceTransactional
 public class EmployeeCreateService {
 
     private EmployeeCreateInput input;
+
+    @Autowired
+    private SystemContactService systemContactService;
 
     @Autowired
     private EmployeeRepository employeeRepository;
@@ -35,6 +38,18 @@ public class EmployeeCreateService {
 
         Employee employeeInstance = composeEmployeeInstance(account);
         employee = employeeRepository.save(employeeInstance);
+
+        createContact(account, employee);
+    }
+
+    private void createContact(Account account, Employee employee) {
+        ContactCreateInput input = new ContactCreateInput();
+        input.setAccountId(account.getId());
+        input.setUserId(employee.getId());
+        input.setName(employee.getLastName() + " " + employee.getFirstName());
+        input.setEmail(employee.getEmail());
+
+        systemContactService.createContact(input);
     }
 
     private Account composeAccountInstance() {
